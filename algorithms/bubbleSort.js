@@ -25,7 +25,3 @@ function bubbleSort (a) {
     if (!flag) break
   }
 }
-
-const array = [6, 5, 4, 3, 2, 1]
-bubbleSort(array)
-console.log(array);
