@@ -1,14 +1,11 @@
-class Node {
-  constructor (element) {
-    this.element = element
-    this.next = null
-  }
-}
+import Node from './node'
+import { defaultEquals } from '../utils'
 
-class SingleLinkedList {
-  constructor () {
+class LinkedList {
+  constructor (equalsFn = defaultEquals) {
     this.head = null
     this.count = 0
+    this.equalsFn = equalsFn
   }
 
   /**
@@ -89,7 +86,7 @@ class SingleLinkedList {
     if (index >= 0 && index < this.count) {
       const node = new Node(element)
 
-      // index 为 0， 移除第一个
+      // index 为 0
       if (index === 0) {
         this.head = node
       } else {
@@ -114,7 +111,7 @@ class SingleLinkedList {
     let current = this.head
 
     for (let i = 0; i < this.count && current != null; i++) {
-      if (element === current.element) {
+      if (this.equalsFn(element, current.element)) {
         return i
       }
       current = current.next
@@ -149,3 +146,5 @@ class SingleLinkedList {
     return objectString
   }
 }
+
+export default LinkedList
