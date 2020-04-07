@@ -50,24 +50,56 @@ class DoubleLinkedList extends LinkedList {
   }
 
   push (element) {
+    const node = new DoubleNode(element)
+    let current = this.head
 
+    if (current == null) {
+      this.head = node
+    } else {
+      while (current != null) {
+        current = current.next
+      }
+      element.prev = current
+      current.next = element
+    }
+
+    this.count ++
   }
 
-  getElementAt (index) {
-
-  }
-
-  remove (element) {
-
-  }
-
+  /**
+   * 根据下标删除
+   * @param {*} index 位置
+   * @returns element
+   */
   removeAt (index) {
+    // 边界
+    if (index >= 0 && index < this.count) {
+      let current = this.head
 
+      // index 为 0， 移除第一个
+      if (index === 0) {
+        this.head = current.next
+        if (this.count === 1) {
+          this.tail = null
+        } else {
+          this.head.prev = null
+        }
+
+      // 移除最后一位
+      } else if (index === this.count) {
+        current = this.tail
+        this.tail = current.prev
+        this.tail.next = null
+      } else {
+        current = this.getElementAt(index)
+        const previous = current.prev
+        previous.next = current.next
+        current.next.prev = previous
+      }
+      this.count --
+
+      return current.element
+    }
+    return undefined
   }
 }
-
-const doubleLinked = new DoubleLinkedList()
-
-doubleLinked.push('asd')
-doubleLinked.push('asdddd')
-console.log(doubleLinked)

@@ -14,11 +14,12 @@ class LinkedList {
    */
   push (element) {
     const node = new Node(element)
+    let current = this.head
+
     // 节点为空时
-    if (this.head == null) {
+    if (current == null) {
       this.head = node
     } else {
-      let current = this.head
       // 找到最后一个节点
       while (current.next != null) {
         current = current.next
@@ -53,12 +54,14 @@ class LinkedList {
   removeAt (index) {
     // 边界
     if (index >= 0 && index < this.count) {
+      let current = this.head
+
       // index 为 0， 移除第一个
       if (index === 0) {
         this.head = current.next
       } else {
         const previous = this.getElementAt(index - 1)
-        const current = previous.next
+        current = previous.next
         previous.next = current.next
       }
       this.count --
