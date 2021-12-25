@@ -1,3 +1,15 @@
 {
-  "type": "module"
+  "private": true,
+  "name": "data_structures_and_algorithms",
+  "homepage": "https://github.com/simonwong/data_structures_and_algorithms#readme",
+  "bugs": {
+    "url": "https://github.com/simonwong/data_structures_and_algorithms/issues"
+  },
+  "repository": "https://github.com/simonwong/data_structures_and_algorithms",
+  "author": "Simon <wsj_simon@163.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@yueqing/lint": "^2.0.0-alpha.3",
+    "typescript": "^4.5.4"
+  }
 }
