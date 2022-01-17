@@ -1,8 +1,8 @@
 class TreeNode {
-  constructor (val, left, right) {
-    this.val = (val === undefined ? 0 : val)
-    this.left = (left === undefined ? null : left)
-    this.right = (right === undefined ? null : right)
+  constructor(val, left, right) {
+    this.val = val === undefined ? 0 : val
+    this.left = left === undefined ? null : left
+    this.right = right === undefined ? null : right
   }
 }
 
@@ -16,11 +16,9 @@ normalData.right.right = new TreeNode(10)
 
 export const normalTree = normalData
 
-
 //        5
 //    2       3
 //  4   6   9   10
-
 
 const searchData = new TreeNode(4)
 searchData.left = new TreeNode(2)
@@ -31,7 +29,6 @@ searchData.right.left = new TreeNode(5)
 searchData.right.right = new TreeNode(7)
 
 export const searchTree = searchData
-
 
 //        4
 //    2       6

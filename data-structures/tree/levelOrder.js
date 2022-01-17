@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 /**
  * Definition for a binary tree node.
  * function TreeNode(val) {
@@ -5,15 +6,13 @@
  *     this.left = this.right = null;
  * }
  */
-/**
- * @param {TreeNode} root
- * @return {number[][]}
- */
-const levelOrder = function(root) {
-  if (!root) return
+
+export const levelOrder = root => {
+  if (!root) return null
 
   let checkArr = [root]
-  let result = []
+  /** @type {number[][]} */
+  const result = []
 
   while (checkArr.length > 0) {
     const newCheckArr = []

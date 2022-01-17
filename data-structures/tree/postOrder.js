@@ -11,16 +11,16 @@
 // }
 
 // 后序 - 迭代写法
-function postOrder (root) {
-  const stack = [];
-  let prev = null;
+function postOrder(root) {
+  const stack = []
+  let prev = null
 
   while (root != null || stack.length > 0) {
     while (root != null) {
-      stack.push(root);
-      root = root.left;
+      stack.push(root)
+      root = root.left
     }
-    root = stack.pop();
+    root = stack.pop()
     if (root.right == null || root.right === prev) {
       // TODO: root.val
       console.log(root.val)
