@@ -1,8 +1,8 @@
 /**
  * 选择排序
  */
-function selectionSort (a) {
-  const length = a.length
+export function selectionSort(a) {
+  const { length } = a
 
   if (length <= 1) return
 

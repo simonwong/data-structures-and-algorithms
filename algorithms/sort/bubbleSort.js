@@ -1,8 +1,8 @@
 /**
  * 冒泡排序
  */
-function bubbleSort (a) {
-  const length = a.length
+export function bubbleSort(a) {
+  const { length } = a
 
   if (length <= 1) return
 

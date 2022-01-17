@@ -3,10 +3,9 @@
  * @param {*} a
  * @param {*} value
  */
-function bsearch(a, value) {
+export function binarySearch(a, value) {
   let low = 0
   let high = a.length - 1
-
 
   while (low <= high) {
     const mid = low + ((high - low) >> 1)
@@ -28,7 +27,6 @@ function bsearch(a, value) {
 // function bsearch(a, value) {
 //   let low = 0
 //   let high = a.length - 1
-
 
 //   while (low <= high) {
 //     const mid = low + ((high - low) >> 1)

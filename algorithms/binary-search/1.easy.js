@@ -3,13 +3,11 @@
  * @param {*} a
  * @param {*} value
  */
-function bsearch(a, value) {
+export function bsearch(a, value) {
   let low = 0
   let high = a.length - 1
 
-
   while (low <= high) {
-
     // (l + h) / 2
     // l + (h - l) / 2
     // l + ((h - l) >> 1) 由于是位运算，可以不用 Math.floor
@@ -17,7 +15,8 @@ function bsearch(a, value) {
 
     if (a[mid] === value) {
       return mid
-    } else if (a[mid] < value) {
+    }
+    if (a[mid] < value) {
       low = mid + 1
     } else {
       high = mid - 1

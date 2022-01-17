@@ -11,7 +11,8 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "outDir": "dist",
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "downlevelIteration": true
   },
   "exclude": [
     "node_modules",

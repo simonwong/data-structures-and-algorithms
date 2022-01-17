@@ -1,8 +1,8 @@
 /**
  * 插入排序
  */
-function insertionSort (a) {
-  const length = a.length
+export function insertionSort(a) {
+  const { length } = a
 
   if (length <= 1) return
 
@@ -15,13 +15,13 @@ function insertionSort (a) {
     for (; j >= 0; j--) {
       // 向右侧移动
       if (a[j] > value) {
-        a[j+1] = a[j]
+        a[j + 1] = a[j]
       } else {
         break
       }
     }
 
     // 移动完后，这个位置是空的，插入
-    a[j+1] = value
+    a[j + 1] = value
   }
 }

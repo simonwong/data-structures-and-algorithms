@@ -1,8 +1,27 @@
-import Node from './node'
-import { defaultEquals } from '../utils'
+import { Node } from './Node'
 
-class LinkedList {
-  constructor (equalsFn = defaultEquals) {
+const defaultEquals = <T>(a: T, b: T) => a === b
+
+export interface LinkedListBase<T> {
+  /** Iterator */
+  [Symbol.iterator](): IterableIterator<T>
+
+  push: (el: T) => void
+  getElementAt: (index: Number) => Node<T>
+  removeAt: (index: Number) => T
+  remove: (el: T) => T
+  insert: (el: T, index: number) => void
+  indexOf: (el: T) => number
+}
+
+export class LinkedList<T> implements LinkedListBase<T> {
+  private head: Node<T>
+
+  private count: number
+
+  private equalsFn: (a: T, b: T) => boolean
+
+  constructor(equalsFn = defaultEquals) {
     this.head = null
     this.count = 0
     this.equalsFn = equalsFn
@@ -10,10 +29,10 @@ class LinkedList {
 
   /**
    * 向尾部添加一个节点
-   * @param {*} element 节点数据
+   * @param {*} val 节点数据
    */
-  push (element) {
-    const node = new Node(element)
+  push(val: T) {
+    const node = new Node(val)
     let current = this.head
 
     // 节点为空时
@@ -26,14 +45,14 @@ class LinkedList {
       }
       current.next = node
     }
-    this.count ++
+    this.count++
   }
 
   /**
    * 根据下标查找节点
    * @param {*} index
    */
-  getElementAt (index) {
+  getElementAt(index: number) {
     // 边界
     if (index >= 0 && index < this.count) {
       let current = this.head
@@ -42,16 +61,17 @@ class LinkedList {
         current = current.next
       }
 
-      return current.element
+      return current
     }
     return undefined
   }
+
   /**
    * 根据下标删除
    * @param {*} index 位置
-   * @returns element
+   * @returns val
    */
-  removeAt (index) {
+  removeAt(index: number) {
     // 边界
     if (index >= 0 && index < this.count) {
       let current = this.head
@@ -64,19 +84,19 @@ class LinkedList {
         current = previous.next
         previous.next = current.next
       }
-      this.count --
+      this.count--
 
-      return current.element
+      return current.val
     }
     return undefined
   }
 
   /**
    * 移除一个节点
-   * @param {*} element
+   * @param {*} val
    */
-  remove (element) {
-    const index = this.indexOf(element)
+  remove(val: T) {
+    const index = this.indexOf(val)
     return this.removeAt(index)
   }
 
@@ -84,10 +104,10 @@ class LinkedList {
    * 插入一个节点
    * @param {*} data 节点数据
    */
-  insert (element, index) {
+  insert(val: T, index: number) {
     // 边界
     if (index >= 0 && index < this.count) {
-      const node = new Node(element)
+      const node = new Node(val)
 
       // index 为 0
       if (index === 0) {
@@ -98,7 +118,7 @@ class LinkedList {
         previous.next = node
         node.next = current
       }
-      this.count ++
+      this.count++
 
       return true
     }
@@ -107,14 +127,13 @@ class LinkedList {
 
   /**
    * 获取节点位置
-   * @param {*} element
+   * @param {*} val
    */
-  indexOf (element) {
-    let index = 0
+  indexOf(val: T) {
     let current = this.head
 
     for (let i = 0; i < this.count && current != null; i++) {
-      if (this.equalsFn(element, current.element)) {
+      if (this.equalsFn(val, current.val)) {
         return i
       }
       current = current.next
@@ -122,32 +141,38 @@ class LinkedList {
     return -1
   }
 
-  size () {
+  size() {
     return this.count
   }
 
-  isEmpty () {
+  isEmpty() {
     return this.count === 0
   }
 
-  getHead () {
+  getHead() {
     return this.head
   }
 
-  toString () {
+  toString() {
     if (this.head == null) {
       return ''
     }
-    let objectString = `${this.head.element}`
+    let objectString = `${this.head.val}`
     let current = this.head.next
 
     for (let i = 1; i < this.count && current != null; i++) {
-      objectString = `${objectString},${current.element}`
+      objectString = `${objectString},${current.val}`
       current = current.next
     }
 
     return objectString
   }
-}
 
-export default LinkedList
+  *[Symbol.iterator]() {
+    let current = this.head
+    while (current != null) {
+      yield current.val
+      current = current.next
+    }
+  }
+}
