@@ -1,7 +1,7 @@
-import LinkedList from './linked_list'
-import DoubleNode from './double_node'
+import { LinkedList } from './LinkedList'
+import { DoubleNode } from './DoubleNode'
 
-class DoubleLinkedList extends LinkedList {
+export class DoubleLinkedList extends LinkedList {
   constructor (equalsFn) {
     super(equalsFn)
 
