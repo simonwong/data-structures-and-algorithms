@@ -1,20 +1,8 @@
 /* eslint-disable max-classes-per-file */
 import { LinkedList } from '../linked-list/LinkedList'
+import { Graph as GraphBase } from './interface'
 
-export interface Graph {
-  /** vertex 顶点数 */
-  V: () => number
-  /** edge 边数 */
-  E: () => number
-  /** 向图中添加一条 v-w 的边 */
-  addEdge: (v: number, w: number) => void
-  /** adjacency 返回和 v 相邻的所有顶点 */
-  adj: (v: number) => Iterable<number>
-  /** 对象的字符串表示 */
-  toSting: () => string
-}
-
-export class UndiGraph implements Graph {
+export class Graph implements GraphBase {
   private v: number
 
   private e: number
